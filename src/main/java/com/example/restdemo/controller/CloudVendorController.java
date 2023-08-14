@@ -16,21 +16,21 @@ public class CloudVendorController {
         this.cloudVendorService = cloudVendorService;
     }
 
-    @GetMapping("{vendorId}")
-    public CloudVendor getCloudVendorDetails(@PathVariable("{vendorId}") String vendorId)
+    @GetMapping("/{vendorId}")
+    public CloudVendor getCloudVendorDetails(@PathVariable("vendorId") String vendorId)
     {
        return cloudVendorService.getCloudVendor(vendorId);
 
     }
 
-    @GetMapping()
+    @GetMapping("/")
     public List<CloudVendor> getCloudVendorDetails()
     {
         return cloudVendorService.getAllCloudVendors();
 
     }
 
-    @PostMapping
+    @PostMapping("/")
     public String createCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
     {
         cloudVendorService.createCloudVendor(cloudVendor);
@@ -38,15 +38,15 @@ public class CloudVendorController {
         return "Cloud Vendor created Successfully";
     }
 
-    @PutMapping
+    @PutMapping("/")
     public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor)
     {
         cloudVendorService.updateCloudVendor(cloudVendor);
         return "Cloud Vendor Updated Successfully";
     }
 
-    @DeleteMapping("{vendorId}")
-    public String deleteCloudVendorDetails(String vendorId)
+    @DeleteMapping("/{vendorId}")
+    public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId)
     {
         cloudVendorService.deleteCloudVendor(vendorId);
 
