@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 @DataJpaTest
 class CloudVendorRepositoryTest {
@@ -47,4 +47,13 @@ class CloudVendorRepositoryTest {
        assertThat(cloudVendorList.get(0).getVendorAddress()).isEqualTo(cloudVendor.getVendorAddress());
     }
     // test case failure
+
+    @Test
+    public void testFindByVendorName_NotFound()
+    {
+        List<CloudVendor> cloudVendorList = cloudVendorRepository.findByVendorName("GCP");
+        assertThat(cloudVendorList.isEmpty()).isTrue();
+
+
+    }
 }
