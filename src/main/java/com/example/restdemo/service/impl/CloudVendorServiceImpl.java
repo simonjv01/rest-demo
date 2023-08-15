@@ -1,5 +1,7 @@
 package com.example.restdemo.service.impl;
 
+import com.example.restdemo.exception.CloudVendorException;
+import com.example.restdemo.exception.CloudVendorNotFoundException;
 import com.example.restdemo.model.CloudVendor;
 import com.example.restdemo.repository.CloudVendorRepository;
 import com.example.restdemo.service.CloudVendorService;
@@ -30,12 +32,16 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
     @Override
     public String deleteCloudVendor(String cloudVendorId) {
+
         cloudVendorRepository.deleteById(cloudVendorId);
         return "Vendor Deleted";
     }
 
     @Override
-    public CloudVendor getCloudVendor(String cloudVendorId) {
+    public CloudVendor getCloudVendor(String cloudVendorId) throws CloudVendorNotFoundException {
+        if(cloudVendorRepository.findById(cloudVendorId).isEmpty()) {
+            throw new CloudVendorNotFoundException("Requested Cloud Vendor does not exits");
+        }
        return cloudVendorRepository.findById(cloudVendorId).get();
 
     }
