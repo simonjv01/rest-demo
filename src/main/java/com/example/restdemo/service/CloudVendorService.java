@@ -11,4 +11,6 @@ public interface CloudVendorService {
     public CloudVendor getCloudVendor(String cloudVendorId);
     public List<CloudVendor> getAllCloudVendors();
 
+    public List<CloudVendor> getByVendorName(String vendorName);
+
 }
